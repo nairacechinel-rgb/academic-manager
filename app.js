@@ -131,4 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── Init ────────────────────────────────────────────────────
   activateModule('dashboard');
+  if (moduleId === 'dashboard')  updateDashboardStats();
+  if (moduleId === 'curriculum') Curriculum.init();
+  if (moduleId === 'tasks')      Tasks.init();
 });
