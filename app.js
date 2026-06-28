@@ -41,35 +41,23 @@ document.addEventListener('DOMContentLoaded', () => {
     content:    'Conteúdos'
   };
 
-  function activateModule(moduleId) {
-    // Atualiza nav
+    function activateModule(moduleId) {
     navItems.forEach(item => {
       item.classList.toggle('active', item.dataset.module === moduleId);
     });
 
-    // Atualiza label topbar
     moduleLabel.textContent = MODULE_LABELS[moduleId] || moduleId;
 
-    // Mostra módulo correto
     modules.forEach(mod => {
       mod.classList.toggle('hidden', mod.id !== `module-${moduleId}`);
     });
 
-    // Fecha sidebar no mobile
-    if (window.innerWidth <= 768) {
-      sidebar.classList.remove('open');
-    }
+    if (window.innerWidth <= 768) sidebar.classList.remove('open');
 
-    // Atualiza dashboard se for o módulo ativo
+    // Inicializa o módulo correto
     if (moduleId === 'dashboard') updateDashboardStats();
+    if (moduleId === 'curriculum') Curriculum.init();
   }
-
-  navItems.forEach(item => {
-    item.addEventListener('click', () => {
-      activateModule(item.dataset.module);
-    });
-  });
-
   // ── Dashboard: contadores ───────────────────────────────────
   function updateDashboardStats() {
     const disciplines = Storage.getArray('disciplines');
