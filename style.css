@@ -664,4 +664,151 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    .btn-remove-slot:hover {
      background: rgba(224, 82, 82, 0.25);
    }
+   /* ============================================================
+   TAREFAS E EVENTOS
+   ============================================================ */
+
+.tasks-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.tasks-filters {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 6px 14px;
+  border-radius: 99px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: var(--bg-surface);
+  border: 1px solid var(--bg-border);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.filter-btn:hover {
+  border-color: var(--moss);
+  color: var(--text-primary);
+}
+
+.filter-btn.active {
+  background: var(--emerald);
+  color: var(--flag-deep);
+  border-color: var(--emerald);
+}
+
+/* Lista de tarefas */
+.tasks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.task-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--bg-surface);
+  border: 1px solid var(--bg-border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  transition: border-color var(--transition), opacity var(--transition);
+}
+
+.task-row:hover { border-color: var(--moss); }
+
+.task-row--done {
+  opacity: 0.5;
+}
+
+.task-row--overdue {
+  border-left: 3px solid var(--danger);
+}
+
+.task-row__check {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: none;
+  background: none;
+  color: var(--emerald);
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.task-row__check:hover { background: var(--bg-raised); }
+
+.check-circle {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--bg-border);
+  display: block;
+  transition: border-color var(--transition);
+}
+
+.task-row__check:hover .check-circle {
+  border-color: var(--emerald);
+}
+
+.task-row__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.task-row__top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 5px;
+}
+
+.task-row__title {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.task-row--done .task-row__title {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.task-row__badges {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.task-row__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  font-size: 0.78rem;
+}
+
+.task-row__actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+/* Cores utilitárias */
+.text-danger  { color: var(--danger); }
+.text-emerald { color: var(--emerald); }
+.text-muted   { color: var(--text-secondary); }
 }
