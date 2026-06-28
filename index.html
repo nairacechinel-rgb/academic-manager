@@ -1,1 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AcadêmicOS — Gestão de Estudos</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
 
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__brand">
+      <span class="sidebar__logo">⬡</span>
+      <span class="sidebar__title">AcadêmicOS</span>
+    </div>
+
+    <nav class="sidebar__nav">
+      <ul class="nav__list">
+        <li class="nav__item active" data-module="dashboard">
+          <span class="nav__icon">
+            <!-- Dashboard icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+              <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+            </svg>
+          </span>
+          <span class="nav__label">Dashboard</span>
+        </li>
+
+        <li class="nav__item" data-module="curriculum">
+          <span class="nav__icon">
+            <!-- Book icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+          </span>
+          <span class="nav__label">Grade Curricular</span>
+        </li>
+
+        <li class="nav__item" data-module="tasks">
+          <span class="nav__icon">
+            <!-- Check-square icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 11 12 14 22 4"/>
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+            </svg>
+          </span>
+          <span class="nav__label">Tarefas e Eventos</span>
+        </li>
+
+        <li class="nav__item" data-module="schedule">
+          <span class="nav__icon">
+            <!-- Calendar icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+          </span>
+          <span class="nav__label">Cronograma</span>
+        </li>
+
+        <li class="nav__item" data-module="content">
+          <span class="nav__icon">
+            <!-- File-text icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10 9 9 9 8 9"/>
+            </svg>
+          </span>
+          <span class="nav__label">Conteúdos</span>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar__footer">
+      <span class="sidebar__version">v1.0.0 — Local</span>
+    </div>
+  </aside>
+
+  <!-- ===== MAIN WRAPPER ===== -->
+  <div class="main-wrapper">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <button class="topbar__toggle" id="sidebarToggle" aria-label="Abrir menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+
+      <div class="topbar__breadcrumb">
+        <span id="currentModuleLabel">Dashboard</span>
+      </div>
+
+      <div class="topbar__actions">
+        <div class="topbar__date" id="topbarDate"></div>
+      </div>
+    </header>
+
+    <!-- CONTENT AREA -->
+    <main class="content" id="contentArea">
+
+      <!-- Cada módulo será injetado aqui via JS -->
+      <!-- DASHBOARD (visível por padrão) -->
+      <section class="module" id="module-dashboard">
+        <div class="module__header">
+          <h1 class="module__title">Painel Geral</h1>
+          <p class="module__subtitle">Bem-vindo ao AcadêmicOS. Selecione um módulo na barra lateral para começar.</p>
+        </div>
+
+        <div class="dashboard__grid">
+          <div class="card card--stat">
+            <div class="card__icon card__icon--green">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+              </svg>
+            </div>
+            <div class="card__info">
+              <span class="card__value" id="stat-disciplines">0</span>
+              <span class="card__label">Disciplinas</span>
+            </div>
+          </div>
+
+          <div class="card card--stat">
+            <div class="card__icon card__icon--moss">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 11 12 14 22 4"/>
+                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+              </svg>
+            </div>
+            <div class="card__info">
+              <span class="card__value" id="stat-tasks">0</span>
+              <span class="card__label">Tarefas Ativas</span>
+            </div>
+          </div>
+
+          <div class="card card--stat">
+            <div class="card__icon card__icon--flag">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+            </div>
+            <div class="card__info">
+              <span class="card__value" id="stat-events">0</span>
+              <span class="card__label">Eventos da Semana</span>
+            </div>
+          </div>
+
+          <div class="card card--stat">
+            <div class="card__icon card__icon--green">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+              </svg>
+            </div>
+            <div class="card__info">
+              <span class="card__value" id="stat-contents">0</span>
+              <span class="card__label">Conteúdos Cadastrados</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Próximos eventos -->
+        <div class="dashboard__section">
+          <h2 class="section__title">Próximos Compromissos</h2>
+          <div class="empty-state" id="upcomingList">
+            <span class="empty-state__icon">📅</span>
+            <p>Nenhum compromisso cadastrado ainda.</p>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Os demais módulos serão renderizados aqui -->
+      <section class="module hidden" id="module-curriculum"></section>
+      <section class="module hidden" id="module-tasks"></section>
+      <section class="module hidden" id="module-schedule"></section>
+      <section class="module hidden" id="module-content"></section>
+
+    </main>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
