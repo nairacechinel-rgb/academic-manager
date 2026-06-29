@@ -135,4 +135,5 @@ document.addEventListener('DOMContentLoaded', () => {
 if (moduleId === 'curriculum') Curriculum.init();
 if (moduleId === 'tasks')      Tasks.init();
 if (moduleId === 'content')    Content.init();
+if (moduleId === 'schedule')   Schedule.init();
 });
