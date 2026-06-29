@@ -1008,4 +1008,229 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   color: var(--text-muted);
   font-size: .85rem;
 }
+   /* ============================================================
+   CRONOGRAMA AUTOMÁTICO
+   ============================================================ */
+
+.schedule-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.schedule-nav {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.schedule-week-label {
+  font-size: .9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  min-width: 160px;
+  text-align: center;
+}
+
+/* Legenda */
+.schedule-legend {
+  margin-bottom: 16px;
+}
+
+.legend-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .78rem;
+  color: var(--text-secondary);
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Grade semanal */
+.schedule-grid-wrap {
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--bg-border);
+  margin-bottom: 8px;
+}
+
+.schedule-grid {
+  display: grid;
+  min-width: 640px;
+  background: var(--bg-surface);
+}
+
+/* Cabeçalho */
+.sg-corner {
+  background: var(--bg-raised);
+  border-bottom: 1px solid var(--bg-border);
+  border-right: 1px solid var(--bg-border);
+  padding: 10px;
+}
+
+.sg-day-header {
+  background: var(--bg-raised);
+  border-bottom: 1px solid var(--bg-border);
+  border-right: 1px solid var(--bg-border);
+  padding: 8px 6px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sg-day-header.sg-today {
+  background: var(--flag);
+  border-bottom-color: var(--emerald);
+}
+
+.sg-day-name {
+  font-size: .78rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.sg-day-date {
+  font-size: .7rem;
+  color: var(--text-secondary);
+}
+
+.sg-today .sg-day-name,
+.sg-today .sg-day-date {
+  color: var(--emerald);
+}
+
+/* Label de hora */
+.sg-time-label {
+  font-size: .65rem;
+  color: var(--text-muted);
+  padding: 4px 6px;
+  border-right: 1px solid var(--bg-border);
+  border-bottom: 1px solid var(--bg-border);
+  display: flex;
+  align-items: flex-start;
+  background: var(--bg-raised);
+  min-height: 36px;
+}
+
+/* Células da grade */
+.sg-cell {
+  border-right: 1px solid var(--bg-border);
+  border-bottom: 1px solid var(--bg-border);
+  min-height: 36px;
+  padding: 2px 3px;
+  position: relative;
+  transition: background var(--transition);
+}
+
+.sg-cell:hover { background: var(--bg-raised); }
+
+.sg-cell--class {
+  background: rgba(74, 124, 89, 0.18);
+}
+
+.sg-cell--study {
+  background: rgba(46, 204, 113, 0.12);
+}
+
+.sg-cell--event {
+  background: rgba(212, 168, 75, 0.12);
+}
+
+.sg-block-label {
+  display: block;
+  font-size: .65rem;
+  color: var(--text-primary);
+  padding: 2px 4px;
+  border-radius: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: rgba(0,0,0,0.25);
+  line-height: 1.4;
+}
+
+/* Resumo da semana */
+.schedule-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.summary-day {
+  background: var(--bg-surface);
+  border: 1px solid var(--bg-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.summary-day__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: var(--bg-raised);
+  border-bottom: 1px solid var(--bg-border);
+}
+
+.summary-day__name {
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.summary-block {
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--bg-border);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.summary-block:last-child { border-bottom: none; }
+
+.summary-block__time {
+  font-size: .72rem;
+  color: var(--text-muted);
+}
+
+.summary-block__topic {
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.summary-block__disc {
+  font-size: .72rem;
+  font-weight: 500;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .schedule-controls {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .schedule-summary {
+    grid-template-columns: 1fr;
+  }
+}
 }
